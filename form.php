@@ -1,5 +1,5 @@
 <form action="" method="POST">
-	FIO:
+	Name:
   <input name="fio" />
   <select name="year">
     <?php 
