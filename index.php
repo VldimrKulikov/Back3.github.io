@@ -22,12 +22,12 @@ exit();
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['fio'])) {
+if (empty($_POST['fio']) || !preg_match('/^([a-zA-Z\'\-]+\s*|[а-яА-ЯёЁ\'\-]+\s*)$/u', $_POST['fio'])) {
 print('Заполните имя.<br/>');
 $errors = TRUE;
 }
 
-if (empty($_POST['email'])) {
+if (empty($_POST['email'])|| !preg_match('/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u', $_POST['email'])) {
 print('Заполните email.<br/>');
 $errors = TRUE;
 }
@@ -37,7 +37,7 @@ print('Подтвердите.<br/>');
 $errors = TRUE;
 }
 
-if (empty($_POST['ability'])) {
+if (empty($_POST['ability'])|| !is_array($_POST['ability'])) {
 print('Выберите способности.<br/>');
 $errors = TRUE;
 }
@@ -47,12 +47,12 @@ print('Все так плохо?<br/>');
 $errors = TRUE;
 }
 
-if (empty($_POST['gender'])) {
+if (empty($_POST['gender'])|| !($_POST['gender']=='M' || $_POST['gender']=='F')) {
 print('Вы кто?<br/>');
 $errors = TRUE;
 }
 
-if (empty($_POST['year'])) {
+if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
 print('Заполните год.<br/>');
 $errors = TRUE;
 }
